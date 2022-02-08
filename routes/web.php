@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AttendanceStatusController, DashboardController, EmployeeController, PositionController, PresenceController};
+use App\Http\Controllers\{AttendanceStatusController, DashboardController, EmployeeController, PositionController, PresenceController, UserController};
 use Illuminate\Support\Facades\{Auth, Route};
 
 
@@ -14,11 +14,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::middleware('admin')->group(function () {
-        Route::prefix('employee')->group(function () {
-            Route::get('/', [EmployeeController::class, 'index'])->name('employee');
-            Route::post('/create', [EmployeeController::class, 'store'])->name('create-employee');
-            Route::put('/{employee}/edit', [EmployeeController::class, 'update'])->name('edit-employee');
-            Route::delete('/{employee}/delete', [EmployeeController::class, 'destroy'])->name('delete-employee');
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('user');
+            Route::get('/create', [UserController::class, 'create'])->name('create-user');
+            Route::post('/create', [UserController::class, 'store']);
+            Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit-user');
+            Route::put('/{user}/edit', [UserController::class, 'update']);
+            Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('delete-user');
         });
 
         Route::prefix('position')->group(function () {
@@ -29,9 +31,9 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('attendance')->group(function () {
+            Route::post('/export', [PresenceController::class, 'exportFile'])->name('export-file');
             Route::get('/', [PresenceController::class, 'index'])->name('attendance')->withoutMiddleware('admin');
-            Route::post('/create', [PresenceController::class, 'store'])->name('create-attendance');
-            Route::post('/status', [AttendanceStatusController::class, 'store'])->name('create-presence')->withoutMiddleware('admin');
+            Route::post('/create', [PresenceController::class, 'store'])->name('create-attendance')->withoutMiddleware('admin');
             Route::put('/{attendance}/edit', [PresenceController::class, 'update'])->name('edit-attendance');
             Route::delete('/{attendance}/delete', [PresenceController::class, 'destroy'])->name('delete-attendance');
         });

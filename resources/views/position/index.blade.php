@@ -7,7 +7,7 @@
 @section('content')
 <!-- Toastification -->
 @if (session()->has('errors')||session()->has('success'))
-    <span id="toast" data-status=true data-type="{{session()->has('errors') ? 'error' :'success'}}" data-message="{{session('success')}}"></span>
+    <span id="toast" data-status=true data-type="{{session()->has('errors') ? 'error' :'success'}}" data-message="{{session('success') ?? "Something went wrong!"}}"></span>
 @endif
 
 <section class="section">

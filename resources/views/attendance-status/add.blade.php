@@ -8,15 +8,15 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('create-presence')}}" method="post">
+        <form action="{{route('create-attendance')}}" method="post">
           @csrf
           <div class="modal-body">
             <div class="form-group">
               <label for="name">Name</label>
               <select name="name" id="name" class="custom-select">
                   <option selected disabled>Select Name</option>
-                  @foreach ($employee as $item)
-                      <option value="{{$item->id}}">{{$item->name}}</option>
+                  @foreach ($user as $item)
+                      <option value="{{$item->id}}" {{$item->id==auth()->id() ? 'selected' :''}}>{{$item->name}}</option>
                   @endforeach
               </select>
               @error('name')

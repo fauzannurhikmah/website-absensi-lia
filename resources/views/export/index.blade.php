@@ -8,29 +8,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" method="post">
+        <form action="{{route('export-file')}}" method="post">
           @csrf
           <div class="modal-body">
             <div class="form-group">
-              <label for="month">Month</label>
-              <select name="month" id="month" class="custom-select">
-                  <option selected disabled>Select Month</option>
-                  @for ($i = 1; $i <= 12; $i++)
-                    <option value="{{$i}}">{{date('F', mktime(0, 0, 0, $i))}}</option>
-                  @endfor
-              </select>
-              @error('month')
-                  <small class="text-danger">{{$message}}</small>
-              @enderror
-            </div>
-            <div class="form-group">
-              <label for="year">Year</label>
-              <select name="year" id="year" class="custom-select">
-                  <option selected disabled>Select Year</option>
-              </select>
-              @error('year')
-                  <small class="text-danger">{{$message}}</small>
-              @enderror
+              <label for="Date">Date</label>
+              <input type="date" class="form-control" name="date">
             </div>
           </div>
           <div class="modal-footer">

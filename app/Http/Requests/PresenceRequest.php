@@ -24,8 +24,8 @@ class PresenceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|exists:employees,id',
-            'position' => 'required|exists:employees,id',
+            'name' => 'required|exists:users,id',
+            'date' => 'required|date',
         ];
     }
 }

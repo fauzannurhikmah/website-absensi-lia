@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Ui\Presets\Preset;
 
 class User extends Authenticatable
 {
@@ -17,9 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'nik',
         'name',
         'email',
         'password',
+        'position_id'
     ];
 
     /**
@@ -31,6 +34,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $with = ['presences', 'position'];
 
     /**
      * The attributes that should be cast to native types.
@@ -44,5 +49,15 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function presences()
+    {
+        return $this->hasMany(Presence::class);
     }
 }

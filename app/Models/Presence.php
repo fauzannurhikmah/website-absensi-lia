@@ -8,21 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Presence extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'employee_id', 'position_id'];
-    protected $with = ['employee', 'position', 'attendance'];
+    protected $fillable = ['user_id', 'date', 'timeIn', 'timeLeave'];
+    public $timestamps = false;
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class);
-    }
-
-    public function position()
-    {
-        return $this->belongsTo(Position::class);
-    }
-
-    public function attendance()
-    {
-        return $this->hasMany(AttendanceStatus::class, 'presence_id');
+        return $this->belongsTo(User::class);
     }
 }

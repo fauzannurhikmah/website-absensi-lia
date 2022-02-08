@@ -6,7 +6,7 @@ $(document).ready(function() {
         if($('span#toast').data('type')=="error"){
             iziToast.error({
                 title: 'Error',
-                message: $('span#toast').data('message') ?? 'Something went wrong!',
+                message: $('span#toast').data('message'),
                 position: 'topRight'
             });
         }else{
