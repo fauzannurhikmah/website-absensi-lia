@@ -24,9 +24,7 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
 
     public function map($attendance): array
     {
-        $i = 1;
         return [
-            $i++,
             $attendance->user->name,
             $attendance->user->position->name,
             $attendance->date,
@@ -45,7 +43,6 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
     public function headings(): array
     {
         return [
-            'No',
             'Name',
             'Position',
             'Date',
