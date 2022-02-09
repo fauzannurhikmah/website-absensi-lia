@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->foreignId('position_id')->nullable();
             $table->rememberToken();
+            $table->dateTime('loggedTime')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class UserController extends Controller
     }
     public function create()
     {
-        $position = Position::orderBy('name', 'asc')->get();
+        $position = Position::orderBy('position', 'asc')->select(['id', 'position'])->get();
         return view('user.create', compact('position'));
     }
     public function store(UserRequest $request)
@@ -30,10 +30,10 @@ class UserController extends Controller
             'position_id' => $request->position
         ]);
 
-        if ($request->role === "on") {
+        if ((int)$request->role === 1) {
             $role = Role::where('name', 'admin')->first();
             $user->role()->attach($role);
-        } else {
+        } elseif ((int)$request->role === 2) {
             $role = Role::where('name', 'employee')->first();
             $user->role()->attach($role);
         }
@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $position = Position::orderBy('name', 'asc')->get();
+        $position = Position::orderBy('position', 'asc')->select(['id', 'position'])->get();
         return view('user.edit', compact('user', 'position'));
     }
     public function update(UserRequest $request, User $user)
@@ -55,19 +55,21 @@ class UserController extends Controller
             'position_id' => $request->position
         ]);
 
-        if ($request->role === "on") {
+        if ((int)$request->role === 1) {
             $role = Role::where('name', 'admin')->first();
             $user->role()->sync($role);
-        } else {
+        } elseif ((int)$request->role === 2) {
             $role = Role::where('name', 'employee')->first();
             $user->role()->sync($role);
         }
 
-        return back()->with('success', 'The user update successfully');
+        return back()->with('success', 'The user updated successfully');
     }
     public function destroy(User $user)
     {
         $user->role()->detach();
+        $user->presences()->delete();
         $user->delete();
+        return back()->with('success', 'The user deleted successfully');
     }
 }

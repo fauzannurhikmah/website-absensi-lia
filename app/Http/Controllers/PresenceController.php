@@ -12,13 +12,12 @@ class PresenceController extends Controller
 {
     public function index()
     {
-
         if (auth()->user()->role[0]->pivot['role_id'] == 1) {
             $attendance = Presence::latest('id')->where('date', date('y-m-d'))->with('user')->paginate(10);
             if (request('filter'))
                 $attendance = Presence::latest('id')->where('date', request('filter'))->with('user')->paginate(10);
         } else {
-            $attendance = Presence::latest('id')->where('user_id', auth()->id())->with('user')->paginate(10);
+            $attendance = Presence::latest('id')->where('user_id', auth()->id())->whereMonth('date', date('m'))->with('user')->paginate(10);
             if (request('filter'))
                 $attendance = Presence::latest('id')->where('date', request('filter'))->Where('user_id', auth()->id())->with('user')->get();
         }
@@ -38,17 +37,18 @@ class PresenceController extends Controller
         }
     }
 
-    public function update(PresenceRequest $request, Presence $presence)
-    {
-        //
-    }
     public function destroy(Presence $presence)
     {
-        //
+        $presence->delete();
+        return back()->with('success', 'The attendance deleted successfully');
     }
 
     public function exportFile()
     {
-        return Excel::download(new AttendanceExport(request('date')), 'Attendance List - ' . request('date') . '.xlsx');
+        $attendance = Presence::where('date', request('date'))->get();
+        if ($attendance->count() == 0)
+            return back()->with('failed', 'Export data for date ' . request('date') . ' is empty');
+        if ($attendance->count() > 0)
+            return Excel::download(new AttendanceExport(request('date')), 'Attendance List - ' . request('date') . '.xlsx');
     }
 }

@@ -26,7 +26,8 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
     {
         return [
             $attendance->user->name,
-            $attendance->user->position->name,
+            $attendance->user->position->department,
+            $attendance->user->position->position,
             $attendance->date,
             $attendance->timeIn
         ];
@@ -44,6 +45,7 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
     {
         return [
             'Name',
+            'Department',
             'Position',
             'Date',
             'Time Check In',

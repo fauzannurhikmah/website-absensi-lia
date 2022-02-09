@@ -74,6 +74,7 @@
               <th>Position</th>
               <th>Date</th>
               <th>Time Check In</th>
+              <th>Action</th>
             </tr>
             @forelse ($attendance as $index=>$data)
               <tr>
@@ -82,14 +83,15 @@
                   <strong class="d-block">{{$data->user->name}}</strong>
                   <small class="text-primary">{{$data->user->nik}}</small>
                 </td>
-                <td>{{$data->user->position->name ?? 'Unset'}}</td>
+                <td>{!!$data->user->position->position ?? "---"!!}
+                  <p class="small text-primary my-0">Department : {{$data->user->position->department ?? '---'}}</p>
+                </td>
                 <td>{{date('d F Y',strtotime($data->date))}}</td>
                 <td>{{$data->timeIn}}</td>
-                {{-- <td>
-                  <button data-toggle="modal" data-target="#editModal{{$data->id}}" class="btn btn-sm mr-1 btn-outline-info border-0 shadow-sm"><i class="fas fa-edit"></i></button>
-                  <button data-toggle="modal" data-target="#deleteModal{{$data->id}}" class="btn btn-sm btn-outline-danger border-0 shadow-sm"><i class="fas fa-trash"></i></button>
+                <td>
+                  <button data-toggle="modal" data-target="#deleteModal{{$data->id}}" class="btn btn-sm btn-outline-danger border-0 shadow-sm"><i class="fas fa-trash"></i> Delete</button>
                   <x-delete-modal id="{{$data->id}}" link="{{route('delete-attendance',$data->id)}}" data="{{$data->name}}"></x-delete-modal>  
-                </td> --}}
+                </td>
               </tr>
             @empty
                 <tr>

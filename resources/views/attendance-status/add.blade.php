@@ -14,10 +14,14 @@
             <div class="form-group">
               <label for="name">Name</label>
               <select name="name" id="name" class="custom-select">
-                  <option selected disabled>Select Name</option>
-                  @foreach ($user as $item)
-                      <option value="{{$item->id}}" {{$item->id==auth()->id() ? 'selected' :''}}>{{$item->name}}</option>
-                  @endforeach
+                  @if (auth()->user()->role[0]->pivot['role_id']==1)
+                    <option selected disabled>Select Name</option>
+                    @foreach ($user as $item)
+                        <option value="{{$item->id}}" {{$item->id==auth()->id() ? 'selected' :''}}>{{$item->name}}</option>
+                    @endforeach
+                  @else
+                      <option value="{{auth()->id()}}" selected>{{auth()->user()->name}}</option>
+                  @endif
               </select>
               @error('name')
                   <small class="text-danger">{{$message}}</small>
@@ -25,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="date">Date</label>
-                <input type="date" name="date" id="date" class="form-control" value="{{date('Y-m-d')}}">
+                <input type="date" name="date" id="date" class="form-control" value="{{date('Y-m-d')}}" {{auth()->user()->role[0]->pivot['role_id']==1?'':'readonly'}}>
                 @error('date')
                     <small class="text-danger">{{$message}}</small>
                 @enderror

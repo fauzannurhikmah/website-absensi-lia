@@ -64,7 +64,7 @@
                     <select name="position" id="position" class="custom-select">
                         <option selected disabled>Select Position</option>
                         @foreach ($position as $item)
-                            <option value="{{$item->id}}" {{$user->position_id==$item->id?'selected':''}}>{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{$user->position_id==$item->id?'selected':''}}>{{$item->position}}</option>
                         @endforeach
                     </select>
                     @error('position')
@@ -72,15 +72,21 @@
                     @enderror
                 </div>
               </div>
-                <div class="form-group row justify-content-end">
-                    <div class="col-md-10">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" name="role" class="custom-control-input" tabindex="3" id="role" 
-                          @foreach ($user->role as $setRole) @if ($setRole->pivot['role_id']==1) {{'checked'}} @endif @endforeach >
-                          <label class="custom-control-label" for="role">Admin</label>
-                        </div>
-                    </div>
+              <div class="form-group row">
+                <label for="role" class="col-form-label col-md-2">Role</label>
+                <div class="col">
+                  <div class="selectgroup selectgroup-pills">
+                    <label class="selectgroup-item ">
+                      <input type="radio" name="role" value="1" class="selectgroup-input" @foreach ($user->role as $setRole) @if ($setRole->pivot['role_id']==1) {{'checked'}} @endif @endforeach>
+                      <span class="selectgroup-button selectgroup-button-icon px-3"><i class="fas fa-user-cog mr-1"></i>Admin</span>
+                    </label>
+                    <label class="selectgroup-item">
+                      <input type="radio" name="role" value="2" class="selectgroup-input" @foreach ($user->role as $setRole) @if ($setRole->pivot['role_id']==2) {{'checked'}} @endif @endforeach>
+                      <span class="selectgroup-button selectgroup-button-icon px-3"><i class="fas fa-user mr-1"></i>User</span>
+                    </label>
                   </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-lg btn-primary">Update</button>

@@ -12,8 +12,7 @@
           <li class="menu-header">Starter</li>
           @can('view', auth()->user())
             <li class="{{request()->routeIs('user') || request()->routeIs('create-user') || request()->routeIs('edit-user')  ? 'active' :''}}"><a class="nav-link" href="{{route('user')}}"><i class="fas fa-user-cog"></i> <span>User</span></a></li>
-            {{-- <li class="{{request()->routeIs('employee') ? 'active' :''}}"><a class="nav-link" href="{{route('employee')}}"><i class="far fa-square"></i> <span>Employee</span></a></li> --}}
-            <li class="{{request()->routeIs('position') ? 'active' :''}}"> <a href="{{route('position')}}" class="nav-link"><i class="fas fa-th"></i> <span>Position</span></a> </li>
+            <li class="{{request()->routeIs('position') ? 'active' :''}}"> <a href="{{route('position')}}" class="nav-link"><i class="fas fa-th"></i> <span>Department</span></a> </li>
           @endcan
           <li class="{{request()->routeIs('attendance') ? 'active' :''}}"> <a href="{{route('attendance')}}" class="nav-link"><i class="far fa-file-alt"></i> <span>Attendance</span></a> </li>
         </ul>

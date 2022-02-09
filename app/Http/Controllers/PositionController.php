@@ -17,13 +17,13 @@ class PositionController extends Controller
 
     public function store(PositionRequest $request)
     {
-        Position::create(['name' => $request->name]);
+        Position::create(['position' => $request->position, 'department' => $request->department]);
         return back()->with('success', 'New position added successfully');
     }
 
     public function update(PositionRequest $request, Position $position)
     {
-        $position->update(['name' => $request->name]);
+        $position->update(['position' => $request->position, 'department' => $request->department]);
         return back()->with('success', 'The position updated successfully');
     }
 

@@ -37,7 +37,7 @@
               <div class="form-group row">
                 <label for="nik" class="col-form-label col-md-2">NIK</label>
                 <div class="col">
-                    <input type="text" name="nik" id="nik" class="form-control">
+                    <input type="text" name="nik" id="nik" class="form-control" value="{{old('nik')}}">
                     @error('nik')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
@@ -46,7 +46,7 @@
               <div class="form-group row">
                 <label for="name" class="col-form-label col-md-2">Name</label>
                 <div class="col">
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}">
                     @error('name')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
@@ -55,7 +55,7 @@
               <div class="form-group row">
                 <label for="email" class="col-form-label col-md-2">Email</label>
                 <div class="col">
-                    <input type="text" name="email" id="email" class="form-control">
+                    <input type="text" name="email" id="email" class="form-control" value="{{old('email')}}">
                     @error('email')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
@@ -67,7 +67,7 @@
                     <select name="position" id="position" class="custom-select">
                         <option selected disabled>Select Position</option>
                         @foreach ($position as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{old('position')==$item->id?'selected':''}}>{{$item->position}}</option>
                         @endforeach
                     </select>
                     @error('position')
@@ -91,16 +91,21 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                     </div>
                 </div>
-
-                <div class="form-group row justify-content-end">
-                    <div class="col-md-10">
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" name="role" class="custom-control-input" tabindex="3" id="role">
-                          <label class="custom-control-label" for="role">Admin</label>
-                        </div>
+                <div class="form-group row">
+                  <label for="role" class="col-form-label col-md-2">Role</label>
+                  <div class="col">
+                    <div class="selectgroup selectgroup-pills">
+                      <label class="selectgroup-item ">
+                        <input type="radio" name="role" value="1" class="selectgroup-input">
+                        <span class="selectgroup-button selectgroup-button-icon px-3"><i class="fas fa-user-cog mr-1"></i>Admin</span>
+                      </label>
+                      <label class="selectgroup-item">
+                        <input type="radio" name="role" value="2" class="selectgroup-input" checked>
+                        <span class="selectgroup-button selectgroup-button-icon px-3"><i class="fas fa-user mr-1"></i>User</span>
+                      </label>
                     </div>
                   </div>
-
+                </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-lg btn-primary">Save</button>

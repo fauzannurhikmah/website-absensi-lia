@@ -60,7 +60,9 @@
                 @endforeach
                 <p class="small text-primary my-0">{{$data->nik}}</p>
               </td>
-              <td>{!!$data->position->name ?? "<span class='badge badge-danger rounded-pill'>Unset</span>"!!}</td>
+              <td>{!!$data->position->position ?? "---"!!}
+                <p class="small text-primary my-0">Department : {{$data->position->department ?? '---'}}</p>
+              </td>
               <td>{{$data->email}}</td>
               <td>
                 <a href="{{route('edit-user',$data->id)}}" class="btn btn-sm mr-1 btn-outline-info border-0 shadow-sm">Edit</a>

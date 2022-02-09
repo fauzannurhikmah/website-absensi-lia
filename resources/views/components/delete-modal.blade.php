@@ -9,7 +9,7 @@ aria-hidden="true">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
-        <div class="modal-body text-left">Do you want to delete {{$data}}?</div>
+        <div class="modal-body text-left">Do you want to delete this data?</div>
         <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <form action="{{$link}}" method="POST">

@@ -1,4 +1,4 @@
-@extends('layouts.app',['title'=>'Position'])
+@extends('layouts.app',['title'=>'Department'])
 
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/iziToast/dist/css/iziToast.min.css')}}">
@@ -12,13 +12,13 @@
 
 <section class="section">
     <div class="section-header">
-      <h1>Positions</h1>
+      <h1>Departments</h1>
     </div>
 </section>
 <div class="section-body">
   <div class="card">
     <div class="card-header">
-      <h4>Position List
+      <h4>Department List
         @if (request('search'))
             <small class="d-block text-dark">Search <strong>{{request('search')}}</strong></small>
           @endif
@@ -42,13 +42,15 @@
           <tbody>
             <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>Department</th>
+            <th>Position</th>
             <th>Action</th>
           </tr>
           @forelse ($position as $index=>$data)
             <tr>
               <td>{{++$index}}</td>
-              <td>{{$data->name}}</td>
+              <td>{{$data->department}}</td>
+              <td>{{$data->position}}</td>
               <td>
                 <button data-toggle="modal" data-target="#editModal{{$data->id}}" class="btn btn-sm mr-1 btn-outline-info border-0 shadow-sm">Edit</button>
                 <button data-toggle="modal" data-target="#deleteModal{{$data->id}}" class="btn btn-sm btn-outline-danger border-0 shadow-sm">Delete</button>
@@ -86,9 +88,16 @@
         @csrf
         <div class="modal-body">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{old('name') ?? $data->name}}">
-            @error('name')
+            <label for="position">Position</label>
+            <input type="text" name="position" id="position" class="form-control" value="{{old('position')??$data->position}}">
+            @error('position')
+                <small class="text-danger">{{$message}}</small>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" name="department" id="department" class="form-control" value="{{old('department')??$data->department}}">
+            @error('department')
                 <small class="text-danger">{{$message}}</small>
             @enderror
           </div>
@@ -108,7 +117,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Position</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -117,9 +126,16 @@
         @csrf
         <div class="modal-body">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control">
-            @error('name')
+            <label for="position">Position</label>
+            <input type="text" name="position" id="position" class="form-control">
+            @error('position')
+                <small class="text-danger">{{$message}}</small>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" name="department" id="department" class="form-control">
+            @error('department')
                 <small class="text-danger">{{$message}}</small>
             @enderror
           </div>
