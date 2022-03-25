@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="#">GE Tech</a>
+        <a href="#"><img src="/assets/img/getech-logo.svg" width="100"></a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="#">GE</a>

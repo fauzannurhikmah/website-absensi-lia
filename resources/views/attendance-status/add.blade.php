@@ -13,7 +13,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="name">Name</label>
-              <select name="name" id="name" class="custom-select">
+              <select name="name" id="name" class="custom-select d-block w-100 select2">
                   @if (auth()->user()->role[0]->pivot['role_id']==1)
                     <option selected disabled>Select Name</option>
                     @foreach ($user as $item)

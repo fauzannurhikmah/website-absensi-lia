@@ -2,6 +2,8 @@
 
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/iziToast/dist/css/iziToast.min.css')}}">
+    <link rel="stylesheet" href="https://getstisla.com/dist/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
       .presence{
         display: inline-block;
@@ -18,7 +20,17 @@
         background-color: #f54545 !important;
         border-radius: 50%;
       }
+      .daterange{
+        width: 200px !important;
+      }
+      .select2-container{
+        width: 100% !important;
+      }
+      .select2-container--default .select2-selection--single .select2-selection__rendered{
+        line-height: 3 !important;
+      }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -65,9 +77,9 @@
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
-        <table class="table table-striped">
-          <tbody>
+        <table class="table table-striped" id="data-table">
           @if (auth()->user()->role[0]->pivot['role_id']==1)
+          <thead>
             <tr>
               <th>No</th>
               <th>Name</th>
@@ -76,6 +88,8 @@
               <th>Time Check In</th>
               <th>Action</th>
             </tr>
+          </thead>
+          <tbody>
             @forelse ($attendance as $index=>$data)
               <tr>
                 <td>{{++$index}}</td>
@@ -185,5 +199,9 @@
 
 @push('script')
   <script src="/assets/iziToast/dist/js/iziToast.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="/assets/js/custom.js"></script>
 @endpush

@@ -45,7 +45,8 @@ class PresenceController extends Controller
 
     public function exportFile()
     {
-        $attendance = Presence::where('date', request('date'))->get();
+        $date = explode(" - ", request('date'));
+        $attendance = Presence::whereBetween('date', [$date[0], $date[1]])->get();
         if ($attendance->count() == 0)
             return back()->with('failed', 'Export data for date ' . request('date') . ' is empty');
         if ($attendance->count() > 0)

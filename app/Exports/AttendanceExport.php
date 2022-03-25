@@ -13,12 +13,12 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
     protected $date;
     public function __construct($date)
     {
-        $this->date = $date;
+        $this->date = explode(" - ", $date);
     }
 
     public function collection()
     {
-        $presences = Presence::where('date', $this->date)->with('user')->get();
+        $presences = Presence::whereBetween('date', [$date[0], $date[1]])->get();
         return collect($presences);
     }
 

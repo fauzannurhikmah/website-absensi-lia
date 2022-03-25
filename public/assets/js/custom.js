@@ -18,5 +18,40 @@ $(document).ready(function() {
         }
     }
 
-    $('.js-example-basic-single').select2();
+    if(DataTable){
+        var partOfUrl=$(location).attr('href').split("/")
+        if(partOfUrl[partOfUrl.length-1]=='user'){
+            $("#data-table").dataTable({
+                "searching": false,
+                "lengthChange": false,
+                "paging": false,
+                "info": false,
+                "columnDefs":  [{"orderable": false,"targets": [3,4] }]
+            });
+        }else if(partOfUrl[partOfUrl.length-1]=='department'){
+            $("#data-table").dataTable({
+                "searching": false,
+                "lengthChange": false,
+                "paging": false,
+                "info": false,
+                "columnDefs":  [{"orderable": false,"targets": [3] }]
+            });
+        }else{
+            $("#data-table").dataTable({
+                "searching": false,
+                "lengthChange": false,
+                "paging": false,
+                "info": false,
+                "columnDefs":  [{"orderable": false,"targets": [5] }]
+            });
+        }
+    }
+
+    $('.daterange').daterangepicker({
+        locale: {format: 'YYYY-MM-DD'},
+        drops: 'down',
+        opens: 'right'
+    });
+
+    $('.select2').select2();
 });

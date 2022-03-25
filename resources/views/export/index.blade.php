@@ -13,7 +13,10 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="Date">Date</label>
-              <input type="date" class="form-control" name="date">
+              <div class="input-group">
+                <input type="text" class="form-control daterange" name="date">
+                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+              </div>
             </div>
           </div>
           <div class="modal-footer">

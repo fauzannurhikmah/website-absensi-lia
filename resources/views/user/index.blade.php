@@ -2,6 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/iziToast/dist/css/iziToast.min.css')}}">
+    <link rel="stylesheet" href="https://getstisla.com/dist/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -39,8 +40,8 @@
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
-        <table class="table table-striped">
-          <tbody>
+        <table class="table table-striped" id="data-table">
+          <thead>
             <tr>
             <th>No</th>
             <th>Name</th>
@@ -48,6 +49,8 @@
             <th>Email</th>
             <th>Action</th>
           </tr>
+          </thead>
+          <tbody>
           @forelse ($user as $index=>$data)
             <tr>
               <td>{{++$index}}</td>
@@ -88,5 +91,7 @@
 
 @push('script')
   <script src="/assets/iziToast/dist/js/iziToast.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
   <script src="/assets/js/custom.js"></script>
 @endpush
