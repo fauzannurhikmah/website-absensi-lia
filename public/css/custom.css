@@ -32,3 +32,8 @@ body.sidebar-mini .main-sidebar .sidebar-menu>li.active>a {
 .btn-primary:focus:active:visited {
     background-color: #4d4b4b !important;
 }
+
+table.dataTable {
+    margin: 0 !important;
+    border-collapse: collapse !important;
+}

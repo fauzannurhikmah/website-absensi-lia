@@ -18,7 +18,7 @@ class AttendanceExport implements WithHeadings, FromCollection, WithMapping, Wit
 
     public function collection()
     {
-        $presences = Presence::whereBetween('date', [$date[0], $date[1]])->get();
+        $presences = Presence::whereBetween('date', [$this->date[0], $this->date[1]])->get();
         return collect($presences);
     }
 

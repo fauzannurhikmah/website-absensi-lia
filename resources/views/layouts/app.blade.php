@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="google-site-verification" content="FLjgPkQkRGKhkqb-QVXQiQa1XTi-lBnRBYc-IRBwUZw" />
   <title>{{$title ?? "GE Tech"}}</title>
 
   <!-- General CSS Files -->
@@ -14,11 +15,14 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/style.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/components.min.css">
-  <link rel="stylesheet" href="/css/custom.css">
   @yield('style')
+  <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRXXSF3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div id="app">
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
@@ -71,6 +75,9 @@
 
   <!-- Template JS File -->
   <script src="/assets/js/scripts.js"></script>
+  <script src="/js/analitycs.js"></script>
+  <script src="/js/tags.js"></script>
+
   <!-- Page Specific JS File -->
   @stack('script')
 </body>

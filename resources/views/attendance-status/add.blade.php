@@ -13,11 +13,11 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="name">Name</label>
-              <select name="name" id="name" class="custom-select d-block w-100 select2">
+              <select name="name" id="name" class="custom-select">
                   @if (auth()->user()->role[0]->pivot['role_id']==1)
                     <option selected disabled>Select Name</option>
-                    @foreach ($user as $item)
-                        <option value="{{$item->id}}" {{$item->id==auth()->id() ? 'selected' :''}}>{{$item->name}}</option>
+                    @foreach ($user->except(1) as $item)
+                        <option value="{{$item->id}}"">{{$item->name}}</option>
                     @endforeach
                   @else
                       <option value="{{auth()->id()}}" selected>{{auth()->user()->name}}</option>

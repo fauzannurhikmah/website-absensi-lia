@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="google-site-verification" content="FLjgPkQkRGKhkqb-QVXQiQa1XTi-lBnRBYc-IRBwUZw" />
   <title>Login &mdash; GETech</title>
 
   <!-- General CSS Files -->
@@ -15,6 +16,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRXXSF3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div id="app">
     <section class="section">
       <div class="container mt-5">
@@ -67,5 +72,8 @@
       </div>
     </section>
   </div>
+
+  <script src="/js/analitycs.js"></script>
+  <script src="/js/tags.js"></script>
 </body>
 </html>
